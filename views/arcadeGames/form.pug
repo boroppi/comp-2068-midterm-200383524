@@ -1,0 +1,26 @@
+form(action=(arcadeGame ? `/arcadeGames/update` : "/arcadeGames"), method="POST")
+  if arcadeGame
+    input(type="hidden", name="id", value=arcadeGame.id)
+
+  .form-group
+    label Title
+    input.form-control(name="arcadeGame[title]", required, value=(arcadeGame ? arcadeGame.title : null))
+
+  .form-group
+    label Rating
+    textarea.form-control(name="arcadeGame[rating]")
+      = arcadeGame ? arcadeGame.rating : null
+
+  .form-group
+    label Description
+    textarea.form-control(name="arcadeGame[description]")
+      = arcadeGame ? arcadeGame.description : null
+
+  .form-group
+    label Genre
+    select.form-control(name="arcadeGame[genre]", required)
+      each genre in ["FIGHTING","SPORTS","STRATEGY","PUZZLE","ARCADE","PLATFORMER","OTHER"]
+        option(value=genre, selected=(arcadeGame && arcadeGame.genre === genre ? true : false))= genre.toLowerCase()
+  
+  .form-group
+    button.btn.btn-dark(type="submit") Submit

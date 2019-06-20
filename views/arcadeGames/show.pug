@@ -1,0 +1,15 @@
+extends ../layouts/main.pug
+block content
+  .container
+    header
+      label Title
+      h1= arcadeGame.title
+      label Rating:
+      h3= arcadeGame.rating
+      label Description:
+      h3= arcadeGame.description
+      label Genre:
+      h3= arcadeGame.genre.toLowerCase()
+
+    div
+      = arcadeGame.content
